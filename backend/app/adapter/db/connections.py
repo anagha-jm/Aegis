@@ -9,8 +9,10 @@ def connect():
     conn_str = os.getenv("CONN_STR")
 
     try:
-        psycopg2.connect(conn_str)
-        print("connected to database")
+        conn = psycopg2.connect(conn_str)
+        return conn
 
     except Exception as e:
         print(f"failed to connnect: {e}")
+
+
