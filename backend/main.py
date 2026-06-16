@@ -1,8 +1,19 @@
 from fastapi import FastAPI 
 import uvicorn
+from migrate.migrations import migrate
+from dotenv import load_dotenv
+import os 
 
+
+load_dotenv()
+
+if os.getenv("ENVIRONMENT") == "production":
+    print("[+] migration started")
+    migrate()
+    
 
 app = FastAPI()
+
 
 @app.get("/")
 def root():
